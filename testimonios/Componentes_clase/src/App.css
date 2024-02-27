@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-size: 18px;
+  background-color: #f5f6f7;
+}
+
+h1 {
+  max-width: 940px;
+  font-size: 2.5em;
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 40px 0;
+}
+
+.App {
+  min-height: 100vh; /*Altura de navegador*/
+  display: flex; /*herramienta para ubicar elementos en el contenedor*/
+  flex-wrap: wrap; /*si un elemento toma todo el ancho del contenedor, los otros se alinean con ese*/
+  align-items: center; /*centrar elementos*/
+  justify-content: center; /*centrar contenido*/
+  text-align: center; /*centrar texto*/
+}
+
+.contenedor-principal {
+  min-height: 600px; /*dependiendo de la cantidad detestimonios que tengamos el contenedor se adapta pero minimo 600px*/
+  display: flex; /*herramienta para ubicar elementos en el contenedor*/
+  flex-wrap: wrap; /*si un elemento toma todo el ancho del contenedor, los otros se alinean con ese*/
+  align-items: center; /*centrar elementos*/
+  justify-content: center; /*centrar contenido*/
+}

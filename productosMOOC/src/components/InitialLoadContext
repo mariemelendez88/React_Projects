@@ -1,0 +1,47 @@
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import CONFIG from './config/config.js'; // Importa tu configuración
+
+// Crea el contexto para la carga inicial
+const InitialLoadContext = createContext();
+
+// Proveedor de contexto para manejar la carga inicial
+const InitialLoadProvider = ({ children }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // Realiza la lógica para cargar los productos
+        // ...
+        await callServer(); // Aquí llamas a tu función para cargar productos
+
+        // Una vez que la carga haya finalizado, establece isLoaded en true
+        setIsLoaded(true);
+      } catch (error) {
+        console.error('Error al cargar productos:', error);
+        setIsLoaded(true); // Establece isLoaded en true incluso si hay un error para evitar un bucle de carga
+      }
+    }
+
+    if (!isLoaded) {
+      fetchData();
+    }
+  }, [isLoaded]);
+
+  return (
+    <InitialLoadContext.Provider value={{ isLoaded }}>
+      {children}
+    </InitialLoadContext.Provider>
+  );
+};
+
+// Hook personalizado para consumir el contexto de carga inicial
+const useInitialLoad = () => {
+  const context = useContext(InitialLoadContext);
+  if (context === undefined) {
+    throw new Error('useInitialLoad debe ser usado dentro de un InitialLoadProvider');
+  }
+  return context;
+};
+
+export { InitialLoadProvider, useInitialLoad };
